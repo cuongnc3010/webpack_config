@@ -1,0 +1,9 @@
+#history files
+.history
+
+#dependencies
+node_modules
+
+#build entry
+dist
+
