@@ -13,6 +13,7 @@ module.exports = (env) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name][contenthash].js',
       clean: true,
+      assetModuleFilename: '[file]',
     },
     devtool: isDevelopment ? 'source-map' : false,
     module: {
@@ -40,13 +41,18 @@ module.exports = (env) => {
                   '@babel/preset-env',
                   {
                     debug: true, // Hiển thị debug lên terminal để dễ debug
-                    useBuiltIns: 'entry', // Dùng cái này thì đơn giản nhất, không cần import core-js vào code
-                    corejs: '3.27.2', // nên quy định verson core-js để babel-preset-env nó hoạt động tối ưu
+                    // useBuiltIns: 'usage', // Dùng cái này thì đơn giản nhất, không cần import core-js vào code
+                    useBuiltIns: 'entry',
+                    corejs: '3.27.2', // nên quy định verson core-js để babel-preset-env hoạt động tối ưu
                   },
                 ],
               ],
             },
           },
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif|pdf)$/i,
+          type: 'asset/resource',
         },
       ],
     },
